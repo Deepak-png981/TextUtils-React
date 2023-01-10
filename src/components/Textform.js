@@ -42,25 +42,25 @@ export default function Textform(props) {
         <div className='container' style={{color : props.mode === 'dark' ? 'white' : 'black'  }}>
             <div className="form-group">
                 <h1>{props.heading}</h1>
-                <textarea style={{backgroundColor : props.mode === 'dark' ? 'grey' : 'white' ,
+                <textarea style={{backgroundColor : props.mode === 'dark' ? '#13466e' : 'white' ,
                 color : props.mode === 'dark' ? 'white' : 'black'  }} value={text} onChange={handlonchange} className="form-control" id="myBox" rows="8"></textarea>
             </div>         
-            <button className="btn btn-primary  my-2" onClick={handleUpClick}>Convert to UPPERCASE</button>   
-            <button className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>Convert to UPPERCASE</button>   
-            <button className="btn btn-primary mx-2 my-2" onClick={handleCopyClick}>Copy to Clipboard</button>
-            <button className="btn btn-primary mx-2 my-2" onClick={speak}>Speak</button>   
-            <button className="btn btn-primary mx-2 my-2" onClick={handleClearClick}>Clear</button>   
+            <button disabled = {text.length === 0} className="btn btn-primary  my-2" onClick={handleUpClick}>Convert to UPPERCASE</button>   
+            <button disabled = {text.length === 0} className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>Convert to Lowercase</button>   
+            <button disabled = {text.length === 0} className="btn btn-primary mx-2 my-2" onClick={handleCopyClick}>Copy to Clipboard</button>
+            <button disabled = {text.length === 0} className="btn btn-primary mx-2 my-2" onClick={speak}>Speak</button>   
+            <button disabled = {text.length === 0} className="btn btn-primary mx-2 my-2" onClick={handleClearClick}>Clear</button>   
         </div>
         <div className="container my-3" style={{color : props.mode === 'dark' ? 'white' : '#042743'  }}>
             <h2>Your text summary</h2>
             <p>
-                {text.split(" ").length} Words and {text.length} Characters
+                {text.split(" ").filter((elem)=>{return elem.length !== 0}).length} Words and {text.length} Characters
             </p>
             <p>
-                {0.008*text.split(" ").length} Minutes to read
+                {0.008*text.split(" ").filter((elem)=>{return elem.length !== 0}).length} Minutes to read
             </p>
             <h3>Preview</h3>
-            <p style={{backgroundColor: "lightblue"}} className = "px-2 py-2">{text.length > 0 ? text : "Enter text in the textarea to preview it here."}</p>
+            <p style={{backgroundColor: "lightblue"}} className = "px-2 py-2">{text.length > 0 ? text : "Nothing to preview"}</p>
         </div>
     
     </>
